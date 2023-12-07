@@ -4,7 +4,7 @@
         <name>MoviesAPI</name>
     </assembly>
     <members>
-        <member name="M:MoviesAPI.Controllers.MovieController.IncludeMovie(MoviesAPI.Data.Dtos.CreateMovieDto)">
+        <member name="M:MoviesAPI.Controllers.MovieController.IncludeMovie(MoviesAPI.Data.Dtos.Movie.CreateMovieDto)">
             <summary>
             Adiciona um filme ao banco de dados
             </summary>

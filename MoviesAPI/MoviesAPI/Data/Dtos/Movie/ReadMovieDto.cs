@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MoviesAPI.Data.Dtos.Session;
 
-namespace MoviesAPI.Data.Dtos
+namespace MoviesAPI.Data.Dtos.Movie
 {
     public class ReadMovieDto
     {
@@ -11,5 +11,7 @@ namespace MoviesAPI.Data.Dtos
         public int Duration { get; set; }
 
         public DateTime GetTime { get; set; } = DateTime.Now;
+
+        public IEnumerable<ReadSessionDto> Sessions { get; set; }
     }
 }

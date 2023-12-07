@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using MoviesAPI.Data;
-using MoviesAPI.Data.Dtos;
+using MoviesAPI.Data.Dtos.Movie;
 using MoviesAPI.Models;
 
 namespace MoviesAPI.Controllers
@@ -37,9 +37,12 @@ namespace MoviesAPI.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<ReadMovieDto> RecoverMovies([FromQuery] int skip = 0, [FromQuery] int take = 50)
+        public IEnumerable<ReadMovieDto> RecoverMovies([FromQuery] int skip = 0, [FromQuery] int take = 50, [FromQuery] string? cinema = null)
         {
-            return _mapper.Map<List<ReadMovieDto>>(_context.Movies.Skip(skip).Take(take));
+            if (cinema is null)
+                return _mapper.Map<List<ReadMovieDto>>(_context.Movies.Skip(skip).Take(take).ToList());
+
+            return _mapper.Map<List<ReadMovieDto>>(_context.Movies.Skip(skip).Take(take).Where(movie => movie.Sessions.Any(session => session.Cinema.Name == cinema)).ToList());
         }
 
         [HttpGet("{id}")]

@@ -7,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("MovieConnection");
 
-builder.Services.AddDbContext<MovieContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<MovieContext>(options => options.UseLazyLoadingProxies().UseSqlServer(connectionString));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
